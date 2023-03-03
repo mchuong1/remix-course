@@ -68,7 +68,7 @@ export const action = async ({
 
 export default function JokeRoute() {
   const data = useLoaderData<typeof loader>();
-  const { content, isOwner } = data;
+  const { joke: { content }, isOwner } = data;
   return (
     <div>
       <p>Here's your hilarious joke:</p>
