@@ -24,7 +24,6 @@ export const loader = async ({ request }: LoaderArgs) => {
     select: { id: true, name: true },
   });
   const user = await getUser(request);
-  console.log(user);
 
   return json({
     jokeListItems,
