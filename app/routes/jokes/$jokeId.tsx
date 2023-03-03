@@ -1,6 +1,7 @@
 import type { LoaderArgs, ActionArgs, MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData, useParams, useCatch, Form } from "@remix-run/react";
+import { JokeDisplay } from "~/components/jokes";
 import { db } from "~/utils/db.server";
 import { requireUserId, getUserId } from "~/utils/session.server";
 
@@ -68,25 +69,8 @@ export const action = async ({
 
 export default function JokeRoute() {
   const data = useLoaderData<typeof loader>();
-  const { joke: { content }, isOwner } = data;
-  return (
-    <div>
-      <p>Here's your hilarious joke:</p>
-      <p>{content}</p>
-      { isOwner &&
-        <Form method="post">
-          <button
-            className="button"
-            name="intent"
-            type="submit"
-            value="delete"
-            >
-            Delete
-          </button>
-        </Form>
-      }
-    </div>
-  );
+  const { joke, isOwner } = data;
+  return (<JokeDisplay isOwner={isOwner} joke={joke} />);
 }
 
 export function CatchBoundary() {
