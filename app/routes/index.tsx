@@ -1,14 +1,27 @@
+import type { LinksFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 
+import stylesUrl from "~/styles/index.css";
 
-export default function Index() {
+export const links: LinksFunction = () => {
+  return [{ rel: "stylesheet", href: stylesUrl }];
+};
+
+export default function IndexRoute() {
   return (
-    <main id="content">
-      <h1>A better way of laughing</h1>
-      <p>Try our early beta and never laughing again!</p>
-      <p id="cta">
-        <Link to="/jokes">Try Now!</Link>
-      </p>
-    </main>
+    <div className="container">
+      <div className="content">
+        <h1>
+          Remix <span>Jokes!</span>
+        </h1>
+        <nav>
+          <ul>
+            <li>
+              <Link to="login">Login</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
   );
 }
